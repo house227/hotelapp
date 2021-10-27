@@ -8,12 +8,13 @@
                 margin: 5px;
             }
             h1{
-                font-size: 80pt;
+                font-size: 60pt;
                 text-align: right;
                 color: #f3d5d5;
                 margin: -20px 0px -30px 0px;
                 letter-spacing: -4pt;
             }
+            
             ul{
                     font-size: 12pt;
             }
@@ -63,12 +64,13 @@
     <body>
         <h1>@yield('title')</h1>
         @section('menubar')
-        <h2 class="menutitle">※メニュー</h2>
-        <ul>
-            <li>@show</li>
-        </ul>
+        <h2 class="menutitle"></h2>
+            <h2>@show</h2>
+            <h1>@show</h1>
+        
         <hr size="1">
         <div class="content">
+            <h2>@show</h2>
             @yield('content')
         </div>
         <div class="footer">

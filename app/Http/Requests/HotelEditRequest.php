@@ -16,14 +16,14 @@ class HotelEditRequest extends FormRequest{
 
     
     public function rules(){
-
+        //ユーザー登録フォームのルールチェック
         return [
             'name' => 'required',
             'mail' => 'email|required',
             'tel' => 'required|numeric|digits_between:9,11',
         ];
     }
-
+        //メッセージの編集
     public function messages(){
         return[
             'name.required' => '氏名の入力は必須項目です。',
