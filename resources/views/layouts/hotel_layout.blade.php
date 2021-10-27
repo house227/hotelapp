@@ -47,6 +47,17 @@
                 color:#999;
                 padding: 5px 10px;
             }
+
+            th.error_message{
+                background-color: rgb(245, 104, 104);
+                color: white;
+            }
+            td.error_message{;
+                color: red;
+            }
+            tr.form_margin{
+                margin-bottom: 50px;
+            }
         </style>
     </head>
     <body>

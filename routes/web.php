@@ -5,4 +5,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('hoteluser', 'HotelController@index');
+Route::get('hotel', 'HotelController@edit');
+Route::post('hotel', 'HotelController@edit_post');
