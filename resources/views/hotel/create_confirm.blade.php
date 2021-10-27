@@ -23,7 +23,8 @@
             </tr>
         </table>
 
-        <form action="/hotel/create_db">
+        <form action="/hotel/create_db" method="POST">
+            @csrf
             <input type="hidden" name="confirm_name" value="{{$name}}">
             <input type="hidden" name="confirm_mail" value="{{$mail}}">
             <input type="hidden" name="confirm_tel" value="{{$tel}}">
