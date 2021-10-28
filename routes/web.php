@@ -2,13 +2,25 @@
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index');
 });
 
-//新規登録フォーム画面
-Route::get('hotel', 'HotelController@new_user_create');
-//登録情報確認画面
-Route::post('hotel', 'HotelController@post_create_data');
+// ログイン画面へのルート
+Route::get('login', 'LoginController@index');
+Route::post('login', 'LoginController@check');
 
-Route::get('hotel/create_db', 'HotelController@next_create');
-Route::post('hotel/create_db', 'HotelController@create_db');
+//新規登録フォーム画面
+Route::get('create', 'HotelController@user_create');
+//登録情報確認画面
+Route::post('create', 'HotelController@confirm_data');
+
+
+//DB処理からのリダイレクトで飛んでくる
+// Route::get('hotel/create_redirect', 'HotelController@next_create');
+
+//DBへ登録処理をする
+Route::post('create/create_db', 'HotelController@create_db');
+
+
+// 予約画面へのルート
+Route::get('reserve', 'ReserveController@index');

@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class HotelEditRequest extends FormRequest{
 
     public function authorize(){
-        if($this->path() == 'hotel'){
+        if($this->path() == 'create'){
             return true;
         }else{
             return false;

@@ -59,6 +59,11 @@
             tr.form_margin{
                 margin-bottom: 50px;
             }
+            .login_error{
+                color: rgb(245, 104, 104);
+                
+            }
+
         </style>
     </head>
     <body>
@@ -72,7 +77,14 @@
         <div class="content">
             <h2>@show</h2>
             @yield('content')
+
+            <hr size="2">
         </div>
+
+        <div class="content2">
+            @yield('content2')
+        </div>
+
         <div class="footer">
             @yield('footer')
         </div>

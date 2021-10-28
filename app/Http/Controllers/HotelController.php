@@ -12,14 +12,14 @@ class HotelController extends Controller
 
 {
     // 新規ユーザー登録画面を返す
-    public function new_user_create(){
-        return view('hotel.user_create', ['msg' => '登録に必要なお客様情報を入力してください']);
+    public function user_create(){
+        return view('create.user_create', ['msg' => '登録に必要なお客様情報を入力してください']);
     }
 
 
 
     // 登録データ確認画面を返す
-    public function post_create_data(HotelEditRequest $request){
+    public function confirm_data(HotelEditRequest $request){
         //$requestには送信された入力情報が入っている。
         // $request->○○で取り出し、$user_data配列のキーと結ぶ
         $user_data=[
@@ -27,7 +27,7 @@ class HotelController extends Controller
             'mail' => $request->mail,
             'tel' => $request->tel,
         ];
-        return view('hotel.create_confirm', $user_data);
+        return view('create.user_confirm', $user_data);
     }
 
 
@@ -41,14 +41,14 @@ class HotelController extends Controller
             'tel' => $request->confirm_tel,
         ];
         DB::table('hotelusers')->insert($param);
-        //とりあえずリダイレクト
-        return redirect('/hotel/create_db');
+        //とりあえずログイン画面へリダイレクト
+        return view('create.finish_create');
     }
 
 
     //登録処理からリダイレクトされて初期の登録画面へ
     //とりあえず飛ばす。 見分けが付くようにmsgを変更
     public function next_create(){
-        return view('hotel.user_create', ['msg' => '登録完了しました']);
+        return view('create.user_create', ['msg' => '登録完了しました']);
     }
 }

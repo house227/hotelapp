@@ -1,16 +1,18 @@
 @extends('layouts.hotel_layout')
 
-@section('title', '登録完了画面')
+@section('title', '登録成功')
     @section('menubar')
         @parent
-        【登録完了画面】
+        【登録成功】
 
     @endsection
-    
-    {{-- 確認画面 --}}
+
     @section('content')
+    {{-- 登録成功 --}}
     @parent
-    <h1>登録完了</h1>
+    ご登録ありがとうございました！
+    
+    <a href="/login"><br>ログイン画面へ</a>
     @endsection
 
 

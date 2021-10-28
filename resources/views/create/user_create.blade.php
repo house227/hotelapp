@@ -16,7 +16,7 @@
 
     
     {{-- 登録フォーム内容 --}}
-    <form action="/hotel" method="post">
+    <form action="/create" method="post">
         <table>
             @csrf
 
@@ -57,6 +57,10 @@
         </table>
     </form>
 
+    @endsection
+
+    @section('content2')
+    <a href="/"><br>ホーム画面へ</a>
     @endsection
 
 
