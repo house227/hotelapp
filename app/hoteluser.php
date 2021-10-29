@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class hoteluser extends Model{
 
+    // 一応hoteluserテーブルを使うように指示
     protected $table = 'hotelusers';
 
     //必須項目にidを入れない

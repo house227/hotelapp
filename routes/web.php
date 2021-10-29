@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RoomsController;
 
 Route::get('/', function () {
     return view('home.index');
@@ -24,3 +25,6 @@ Route::post('create/create_db', 'HotelController@create_db');
 
 // 予約画面へのルート
 Route::get('reserve', 'ReserveController@index');
+
+Route::get('roomadd', 'RoomsController@index');
+Route::post('roomadd', 'RoomsController@add');
