@@ -25,9 +25,9 @@
 
         <form action="/create/create_db" method="POST">
             @csrf
-            <input type="hidden" name="confirm_name" value="{{$name}}">
-            <input type="hidden" name="confirm_mail" value="{{$mail}}">
-            <input type="hidden" name="confirm_tel" value="{{$tel}}">
+            <input type="hidden" name="name" value="{{$name}}">
+            <input type="hidden" name="mail" value="{{$mail}}">
+            <input type="hidden" name="tel" value="{{$tel}}">
             <input type="submit" value="確認したので送信する">
         </form>
     @endsection

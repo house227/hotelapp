@@ -6,6 +6,7 @@ use App\Http\Requests\HotelEditRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http_Requests_HotelEditRequest;
+use App\hoteluser;
 
 class HotelController extends Controller
 
@@ -35,12 +36,30 @@ class HotelController extends Controller
     //ユーザー登録をデータベースへ行う
     public function create_db(Request $request){
 
-        $param = [
-            'name' => $request->confirm_name,
-            'mail' => $request->confirm_mail,
-            'tel' => $request->confirm_tel,
-        ];
-        DB::table('hotelusers')->insert($param);
+        //hoteluserモデルにあるバリデートを使いチェック
+        // （入力時に行っているので不必要だと思うが、教科書にならい一応記述）
+        $this->validate($request, hoteluser::$rules);
+        //hoteluserモデルのインスタンス作成
+        $new_hoteluser = new hoteluser;
+        //送信されたデータの配列から全て(all() )を取り出し変数へ
+        $data = $request->all();
+        //['_token']はフィールドに無い項目で、かつCSRF用フィールドなので
+        //あらかじめ削除
+        unset($data['_token']);
+        //入力データの入った$dataを引数にfillメソッドの呼び出し。
+        //saveを呼び出し、インスタンスを保存
+        $new_hoteluser->fill($data)->save();
+
+
+
+
+        // モデルを使わないバージョン
+        // $param = [
+        //     'name' => $request->confirm_name,
+        //     'mail' => $request->confirm_mail,
+        //     'tel' => $request->confirm_tel,
+        // ];
+        // DB::table('hotelusers')->insert($param);
         //とりあえずログイン画面へリダイレクト
         return view('create.finish_create');
     }
