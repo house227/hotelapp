@@ -18,6 +18,17 @@
         <input type="hidden"  name="user_id" value="{{$data->id}}">
         <table>
             <tr>
+                <th>部屋種</th>
+                <td>
+                    洋室<input type="radio" name="serch_room" id="radio1" value="洋室">
+                    : 
+                    和室<input type="radio" name="serch_room" id="radio2" value="和室">
+                    :
+                    どちらでも<input type="radio" name="serch_room" id="radio2" value="両方">
+                </td>
+            </tr>
+
+            <tr>
                 <th>宿泊人数</th>
                 <td>
                     <input type="text" name="people" value="{{old('people')}}">
