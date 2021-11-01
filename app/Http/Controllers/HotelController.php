@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\HotelEditRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http_Requests_HotelEditRequest;
 use App\hoteluser;
 
 class HotelController extends Controller

@@ -25,6 +25,8 @@ Route::post('create/create_db', 'HotelController@create_db');
 
 // 予約画面へのルート
 Route::get('reserve', 'ReserveController@index');
+Route::post('reserve', 'ReserveController@index_post');
 
+//部屋追加ページ
 Route::get('roomadd', 'RoomsController@index');
 Route::post('roomadd', 'RoomsController@add');

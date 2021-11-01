@@ -10,9 +10,12 @@
     {{-- 予約画面 --}}
     @section('content')
     @parent
+    <h2>ID.{{$data->id}} : {{$data->name}} 様</h2>
+    @parent
     <h2>ご希望の情報をご入力ください。</h2>
 
-    <form action="/reserve" method="POST">
+    <form action="/reserve/confirm" method="POST">
+        <input type="hidden"  name="user_id" value="{{$data->id}}">
         <table>
             <tr>
                 <th>宿泊人数</th>
@@ -35,6 +38,7 @@
                 </td>
             </tr>
         </table>
+        
     </form>
 
 

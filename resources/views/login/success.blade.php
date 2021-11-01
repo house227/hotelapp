@@ -9,27 +9,19 @@
 
     @section('content')
     {{-- ログイン成功 --}}
-    
-    <table>
-        <tr>
-            <th>氏名</th>
-            <td>{{$data->name}}</td>
-        </tr>
-
-        <tr>
-            <th>メールアドレス</th>
-            <td>{{$data->mail}}</td>
-        </tr>
-        <tr>
-            <th>電話番号</th>
-            <td>{{$data->tel}}</td>
-        </tr>
-    </table>
+            <h2>ようこそ {{$data->name}} 様</h2>
 
     @endsection
+    
 
     @section('content2')
-        <a href="/reserve">宿泊予約へ...</a>
+
+    <form action="/reserve" method="POST">
+        @csrf
+        <input type="hidden" name="id" value="{{$data->id}}">
+        <input type="submit" value="宿泊予約へ">
+    </form>
+
     @endsection
 
 

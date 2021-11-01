@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class roomgroup extends Model{
 
     public function rooms(){
-        // return $this->hasMany();
+        // roomインスタンスが取り出せるようになる。
+        return $this->hasMany('App\room');
     }
 }

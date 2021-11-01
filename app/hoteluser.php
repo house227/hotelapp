@@ -17,4 +17,12 @@ class hoteluser extends Model{
         'mail' => 'email|required',
         'tel' => 'required|numeric|digits_between:9,11',
     );
+
+    public function reserves(){
+        return $this->hasMany('App\reserve');
+    }
+
+    public function getData(){
+        return  'ID.' . $this->id . ':' . $this->name;
+    }
 }
