@@ -15,8 +15,15 @@
     
 
     @section('content2')
+    
 
-    <form action="/reserve/add" method="POST">
+    <form action="/reserve" method="POST">
+        @csrf
+        <input type="hidden" name="id" value="{{$data->id}}">
+        <input type="submit" value="予約状況確認へ">
+    </form>
+
+    <form action="" method="POST">
         @csrf
         <input type="hidden" name="id" value="{{$data->id}}">
         <input type="submit" value="宿泊予約へ">

@@ -9,10 +9,6 @@ use App\reserve;
 
 class ReserveController extends Controller{
 
-    // 予約確認
-    public function index(){
-        return view('reserve.show_reserve');
-    }
 
 
     // 新規予約画面
@@ -20,11 +16,12 @@ class ReserveController extends Controller{
         return view('reserve.new_reserve');
     }
 
-    public function add_index_post(Request $request){
+    public function show_post(Request $request){
 
+        $reserves = hoteluser::find($request->id)->reserves;
         $user_data = DB::table('hotelusers')->where('id', $request->id)->first();
 
-        return view('reserve.new_reserve', ['data' => $user_data]);
+        return view('reserve.reserve', ['data' => $user_data , 'reserved_data' => $reserves]);
     }
 
     public function confirm(Request $request){
