@@ -12,43 +12,58 @@ class RoomsTableSeeder extends Seeder{
         DB::table('rooms')->insert([
             [
                 'roomgroup_id' => '1',
-                'room_num' => '101'
+                'room_num' => '100',
+                'reserved' => 'yes'
             ],
             [
                 'roomgroup_id' => '1',
-                'room_num' => '102'
+                'room_num' => '101',
+                'reserved' => 'no'
             ],
             [
                 'roomgroup_id' => '1',
-                'room_num' => '103'
+                'room_num' => '102',
+                'reserved' => 'no'
             ],
             [
                 'roomgroup_id' => '1',
-                'room_num' => '104'
+                'room_num' => '103',
+                'reserved' => 'no'
             ],
             [
                 'roomgroup_id' => '1',
-                'room_num' => '105'
+                'room_num' => '104',
+                'reserved' => 'no'
+            ],
+            [
+                'roomgroup_id' => '1',
+                'room_num' => '105',
+                'reserved' => 'no'
             ],
             [
                 'roomgroup_id' => '2',
-                'room_num' => '201'
+                'room_num' => '201',
+                'reserved' => 'no'
             ],
             [
                 'roomgroup_id' => '2',
-                'room_num' => '202'
+                'room_num' => '202',
+                'reserved' => 'no'
             ],
             [
                 'roomgroup_id' => '2',
-                'room_num' => '203'
+                'room_num' => '203',
+                'reserved' => 'no'
             ],
             [
                 'roomgroup_id' => '2',
-                'room_num' => '204'
+                'room_num' => '204',
+                'reserved' => 'no'
             ],
             [
                 'roomgroup_id' => '2',
-                'room_num' => '205'
+                'room_num' => '205',
+                'reserved' => 'no'
             ],
         ]);
     }

@@ -14,6 +14,7 @@ class CreateRoomsTable extends Migration
             $table->increments('id');
             $table->integer('roomgroup_id');
             $table->integer('room_num');
+            $table->string('reserved');
             $table->timestamps();
         });
     }

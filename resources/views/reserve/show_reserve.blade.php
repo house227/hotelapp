@@ -15,12 +15,8 @@
     <h2>ご希望の情報をご入力ください。</h2>
 
     <form action="/reserve/confirm" method="POST">
-
-
         <input type="hidden"  name="user_id" value="{{$data->id}}">
         <table>
-            @csrf
-
             <tr>
                 <th>部屋種</th>
                 <td>
@@ -39,7 +35,6 @@
                 </td>
             </tr>
     
-            {{-- 日付は「例) 2021-11-09」の形で表示される。 --}}
             <tr>
                 <th>チェックイン日付</th>
                 <td>
@@ -53,7 +48,6 @@
                     <input type="date" name="checkout" value="{{old('checkout')}}">
                 </td>
             </tr>
-            <tr><th></th><td><input type="submit" value="send"></td></tr>
         </table>
         
     </form>
