@@ -49,7 +49,7 @@ class HotelController extends Controller
         //saveを呼び出し、インスタンスを保存
         $new_hoteluser->fill($data)->save();
 
-
+        return view('create.finish_create');
 
 
         // モデルを使わないバージョン
@@ -60,7 +60,7 @@ class HotelController extends Controller
         // ];
         // DB::table('hotelusers')->insert($param);
         //とりあえずログイン画面へリダイレクト
-        return view('create.finish_create');
+
     }
 
 

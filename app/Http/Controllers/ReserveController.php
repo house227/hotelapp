@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 use App\reserve;
 use App\hoteluser;
 
@@ -27,4 +28,5 @@ class ReserveController extends Controller{
     public function confirm(Request $request){
         return view('reserve.confirm_reserve', ['data' => $request]);
     }
+
 }

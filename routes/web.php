@@ -24,6 +24,13 @@ Route::post('create/create_db', 'HotelController@create_db');
 
 Route::post('reserve', 'ReserveController@show_post');
 
+
+
+
+// 部屋検索
+Route::get('room/search', 'RoomsController@search_get');
+Route::post('room/search', 'RoomsController@search_post');
+
 //部屋追加ページ
-Route::get('roomadd', 'RoomsController@index');
-Route::post('roomadd', 'RoomsController@add');
+Route::get('roomadd', 'RoomsController@add_get');
+Route::post('roomadd', 'RoomsController@add_post');

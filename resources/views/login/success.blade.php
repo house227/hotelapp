@@ -23,11 +23,12 @@
         <input type="submit" value="予約状況確認へ">
     </form>
 
-    <form action="" method="POST">
+    {{-- <form action="" method="POST">
         @csrf
         <input type="hidden" name="id" value="{{$data->id}}">
         <input type="submit" value="宿泊予約へ">
-    </form>
+    </form> --}}
+    <a href="/reserve/search"><br>空き部屋検索へ</a>
 
     @endsection
 

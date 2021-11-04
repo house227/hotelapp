@@ -1,6 +1,6 @@
 @extends('layouts.hotel_layout')
 
-@section('title', '予約状況一覧')
+@section('title', '予約状況')
     @section('menubar')
         @parent
         【予約状況一覧】
@@ -54,6 +54,7 @@
 
     @section('content2')
     
+    <a href="/room/search"><br>空き部屋検索へ</a>
     <a href="/"><br>ホーム画面へ</a>
 
     @endsection

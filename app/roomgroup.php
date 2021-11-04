@@ -10,4 +10,5 @@ class roomgroup extends Model{
         // roomインスタンスが取り出せるようになる。
         return $this->hasMany('App\room');
     }
+    
 }
