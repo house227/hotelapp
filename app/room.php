@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\roomgroup;
 
 class room extends Model{
     protected $guarded = array('id');
@@ -12,9 +13,10 @@ class room extends Model{
     }
 
     public function scopeSearchNumber($query, $people, $room_group){
+        //  分ける
         $num = roomgroup::where('room_people', '<=', $people)->where('room_name', 'Like', '%' . $room_group . '%' )->value('id');
         foreach($num as $id){
-            
+
         }
         return $query->where('', $people);
     }
