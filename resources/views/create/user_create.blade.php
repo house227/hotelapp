@@ -53,7 +53,7 @@
                 <td><input type="text" name="tel" value="{{old('tel')}}"></td>
             </tr>
 
-            <tr><th></th><td><input type="submit" name="send"></td></tr>
+            <tr><th></th><td><input type="submit" name="send"  ></td></tr>
         </table>
     </form>
 

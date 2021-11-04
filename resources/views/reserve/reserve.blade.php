@@ -17,14 +17,34 @@
 
 
         <table>
-            <tr><th>IDとお名前</th><th>予約内容</th></tr>
             <tr>
-                <td>ID.{{$data->id}}: {{$data->name}}</td>
+                <th>IDと氏名</th>
+
+                {{-- 予約データ分だけテーブルのタイトル「予約内容」を表示「「 --}}
+                @for ($i = 1; $i < count($reserved_data)+1; $i++)
+                <th>予約内容{{$i}}</th>
+                @endfor
+
+
+            </tr>
+            <tr>
+                <td>ID.{{$data->id}}: {{$data->name}} 様</td>
+
+                {{-- 外側ループ：IDに該当する予約データ配列から取り出す --}}
                 @foreach ($reserved_data as $item)
-                    <td>{{$item->getdata()}}</td>
+
+                <td>
+                    <table>
+
+                        @foreach ($item->getdata() as $data)
+                            <tr><td>{{$data}}</td></tr>
+                        @endforeach
+                        
+                    </table>
+                </td>
+                    
                 @endforeach
             </tr>
-
         </table>
 
 
@@ -34,6 +54,7 @@
 
     @section('content2')
     
+    <a href="/"><br>ホーム画面へ</a>
 
     @endsection
 
