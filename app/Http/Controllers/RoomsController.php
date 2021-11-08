@@ -33,7 +33,7 @@ class RoomsController extends Controller
         $search_data = room::SearchReserved($reserved)->
             SearchGroup($group)->SearchNum($num)->get();
 
-            // $db_mail = hoteluser::where('mail', $mail)->value('mail');
+        
 
         return view('room.find', ['datas' => $search_data]);
     }
