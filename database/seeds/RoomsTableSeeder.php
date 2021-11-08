@@ -68,7 +68,7 @@ class RoomsTableSeeder extends Seeder{
             [
                 'roomgroup_id' => '4',
                 'room_num' => '400',
-                'reserved' => 'no'
+                'reserved' => 'yes'
             ],
 
             // 和風スイート

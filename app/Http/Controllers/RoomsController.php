@@ -25,11 +25,15 @@ class RoomsController extends Controller
         //reservedで予約済みか否か（yes=予約済み no=未）
         $reserved = 'no';
         // 洋室か和室か（1が洋室 2が和室）
-        $room_group = $request->room_group;
+        $group = $request->room_group;
         // 宿泊人数
-        $people = $request->rest_num;
+        $num = $request->rest_num;
+
         
-        $search_data = room::SearchReserved($reserved)->SearchGroup($room_group)->get();
+        $search_data = room::SearchReserved($reserved)->
+            SearchGroup($group)->SearchNum($num)->get();
+
+            // $db_mail = hoteluser::where('mail', $mail)->value('mail');
 
         return view('room.find', ['datas' => $search_data]);
     }

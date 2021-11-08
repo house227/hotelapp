@@ -9,19 +9,19 @@ class RoomgroupsSeeder extends Seeder{
         
         DB::table('roomgroups')->insert([
             [
-                'room_name' => '洋風',
+                'room_name' => '洋室',
                 'room_people' => '3'
             ],
             [
-                'room_name' => '和風',
+                'room_name' => '和室',
                 'room_people' => '3'
             ],
             [
-                'room_name' => '洋風スイート',
+                'room_name' => '洋室スイート',
                 'room_people' => '5'
             ],
             [
-                'room_name' => '和風スイート',
+                'room_name' => '和室スイート',
                 'room_people' => '5'
             ],
             

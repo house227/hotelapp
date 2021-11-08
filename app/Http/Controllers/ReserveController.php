@@ -19,6 +19,8 @@ class ReserveController extends Controller{
 
     public function show_post(Request $request){
 
+        // hoteluserモデルに定義したreservesメソッドを呼び出し、
+        // hoteluserに紐づく全ての予約を取得
         $reserves = hoteluser::find($request->id)->reserves;
         $user_data = DB::table('hotelusers')->where('id', $request->id)->first();
 

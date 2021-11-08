@@ -14,7 +14,10 @@
         <table>
            @foreach ($datas as $data)
                <tr>
-                   <th>部屋番号: </th><td>{{$data->room_num}}</td>
+                    <th>部屋番号 </th><th>部屋名</th>
+               </tr>
+               <tr>
+                    <td>{{$data->room_num}}</td><td></td>
                </tr>
            @endforeach
         </table>

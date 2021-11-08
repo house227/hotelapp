@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\room;
 
 class roomgroup extends Model{
 
@@ -10,5 +11,6 @@ class roomgroup extends Model{
         // roomインスタンスが取り出せるようになる。
         return $this->hasMany('App\room');
     }
+    
     
 }
