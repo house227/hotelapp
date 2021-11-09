@@ -12,12 +12,25 @@
     {{-- 検索結果 --}}
 
         <table>
-           @foreach ($datas as $data)
+           
                <tr>
                     <th>部屋番号 </th><th>部屋名</th>
                </tr>
+               @foreach ($room_num as $data)
                <tr>
-                    <td>{{$data->room_num}}</td><td></td>
+                    <td>{{$data->room_num}}</td>
+
+
+                    @foreach ($room_name as $item)
+
+                    {{-- roomテーブルの外部キーとroomgroupテーブルの主キーが同じなら表示 --}}
+                    @if ($data->roomgroup_id === $item->id)
+                        <td>{{$item->room_name}}</td>
+                    @endif
+
+                    @endforeach
+                    
+
                </tr>
            @endforeach
         </table>

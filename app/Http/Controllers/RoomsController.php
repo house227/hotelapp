@@ -30,12 +30,20 @@ class RoomsController extends Controller
         $num = $request->rest_num;
 
         
-        $search_data = room::SearchReserved($reserved)->
+        $search_room_num = room::SearchReserved($reserved)->
             SearchGroup($group)->SearchNum($num)->get();
 
-        
+        // $search_room_name = roomgroup::SearchReserved($reserved)->
+        //     SearchGroup($group)->SearchNum($num)->get();
 
-        return view('room.find', ['datas' => $search_data]);
+        $search_room_name = roomgroup::SearchRoomNum($search_room_num)->get();
+
+        $datas = [
+            'room_num' => $search_room_num,
+            'room_name' => $search_room_name,
+        ];
+        
+        return view('room.find', $datas);
     }
 
 
