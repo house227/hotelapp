@@ -15,10 +15,13 @@ class roomgroup extends Model{
     public function scopeSearchRoomNum($query, $datas){
         // 検索された部屋の情報を使い部屋名を取ろうとしたスコープ
 
+        // 空の配列に検索済みの部屋情報から外部キーのみ別配列へ入れ
+
         $var = array();
         foreach($datas as $data){
             $var[] = $data->roomgroup_id;
         }
+        // 新規作成した配列の値を含む部屋種主キーを全て返す
         return $query->whereIn('id', $var);
     }
 

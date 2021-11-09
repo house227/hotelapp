@@ -16,11 +16,13 @@
                <tr>
                     <th>部屋番号 </th><th>部屋名</th>
                </tr>
+
+               {{-- 空き部屋情報は連想配列で返ってるのでforeachを使う--}}
                @foreach ($room_num as $data)
                <tr>
                     <td>{{$data->room_num}}</td>
 
-
+                {{-- 同じくforeachで表示 --}}
                     @foreach ($room_name as $item)
 
                     {{-- roomテーブルの外部キーとroomgroupテーブルの主キーが同じなら表示 --}}
