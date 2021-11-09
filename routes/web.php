@@ -22,14 +22,19 @@ Route::post('create', 'HotelController@confirm_data');
 //DBへユーザー登録処理をする
 Route::post('create/create_db', 'HotelController@create_db');
 
+// ユーザーに対する予約を表示
 Route::post('reserve', 'ReserveController@show_post');
 
 
+// 部屋予約
+Route::post('reserve/confirm','ReserveController@confirm');
 
 
 // 部屋検索
 Route::get('room/search', 'RoomsController@search_get');
 Route::post('room/search', 'RoomsController@search_post');
+
+
 
 //部屋追加ページ
 Route::get('roomadd', 'RoomsController@add_get');

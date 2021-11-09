@@ -28,7 +28,15 @@ class ReserveController extends Controller{
     }
 
     public function confirm(Request $request){
-        return view('reserve.confirm_reserve', ['data' => $request]);
+
+        // 空き部屋データを配列に
+        $datas= [
+            'num' => $request->num,
+            'name' => $request->name,
+            'people' => $request->people,
+        ];
+
+        return view('reserve.confirm_reserve', $datas);
     }
 
 }
