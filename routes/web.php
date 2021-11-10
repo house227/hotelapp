@@ -27,7 +27,9 @@ Route::post('reserve', 'ReserveController@show_post');
 
 
 // 部屋予約
-Route::post('reserve/confirm','ReserveController@confirm');
+Route::post('reserve/confirm', 'ReserveController@confirm');
+
+Route::post('reserve/create', 'ReserveController@create');
 
 
 // 部屋検索

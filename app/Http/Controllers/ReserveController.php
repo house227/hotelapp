@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ReserveRequest;
 
 use App\reserve;
 use App\hoteluser;
@@ -40,7 +41,9 @@ class ReserveController extends Controller{
         return view('reserve.confirm_reserve', $datas);
     }
 
-    public function create(Request $request){
+
+    //ID取得の為のDB参照と、予約DBへの新規登録と部屋DB情報の更新 
+    public function create(ReserveRequest $request){
 
         // ユーザー情報の取得
         $db_name = hoteluser::where('name', $request->name)->value('name');
@@ -52,7 +55,9 @@ class ReserveController extends Controller{
 
             return view('', ['data' => $user_id]);
         }else{
+            // 名前とメールアドレスが一致しなかった時の処理
             return view('reserve.confirm_reserve', ['login_error' => '1']);
         }
     }
+    
 }
