@@ -27,6 +27,7 @@ class ReserveController extends Controller{
         return view('reserve.reserve', ['data' => $user_data , 'reserved_data' => $reserves]);
     }
 
+    // 予約送信前の確認画面
     public function confirm(Request $request){
 
         // 空き部屋データを配列に
@@ -39,4 +40,19 @@ class ReserveController extends Controller{
         return view('reserve.confirm_reserve', $datas);
     }
 
+    public function create(Request $request){
+
+        // ユーザー情報の取得
+        $db_name = hoteluser::where('name', $request->name)->value('name');
+        $db_mail = hoteluser::where('mail', $request->mail)->value('mail');
+
+        if(isset($db_mail) && isset($db_name)){
+            $user_id = DB::table('hotelusers')->where('name', $request->mail)->
+            where('mail', $request->mail)->value('id');
+
+            return view('', ['data' => $user_id]);
+        }else{
+            return view('reserve.confirm_reserve', ['login_error' => '1']);
+        }
+    }
 }

@@ -12,6 +12,9 @@
     @parent
     予約内容をご確認ください
     {{-- 空き部屋データを表示して予約の確認 --}}
+    <form action="reserve/create" method="POST">
+        @csrf
+
         <table>
             <tr>
                 <th>部屋番号</th><td>{{$num}}号室</td>
@@ -23,12 +26,25 @@
                 <th>部屋名</th><td>{{$name}}</td>
             </tr>
         </table>
+        <br>
 
-        <form action="" method="POST">
-            @csrf
+        <h4>※確認の為お名前(フルネーム)とメールアドレスをご入力下さい※</h4>
+        <table>
+            <tr>
+                <th>氏名</th>
+                <td><input type="text" name="name" value="{{old('name')}}"></td>
+            </tr>
+            <tr>
+                <th>メールアドレス:</th>
+                <td><input type="text" name="mail" value="{{old('mail')}}"></td>
+            </tr>
+
+        </table>
+
+
 
             <input type="hidden" name="num" value="{{$num}}">
-            <input type="hidden" name="name" value="{{$name}}">
+            <input type="hidden" name="room_name" value="{{$name}}">
             <input type="hidden" name="people" value="{{$people}}">
             <input type="submit" value="確認して予約">
         </form>
