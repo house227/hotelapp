@@ -3,11 +3,11 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class DetailsTableSeeder extends Seeder{
+class ReservationRoomTableSeeder extends Seeder{
 
-    public function run(){
-
-        DB::table('details')->insert([
+    public function run()
+    {
+        DB::table('reservation_room')->insert([
             [
                 'reservation_id' => '1',
                 'room_id' => '1',

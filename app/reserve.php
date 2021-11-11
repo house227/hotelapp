@@ -7,8 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class reserve extends Model{
     protected $guarded = array('id');
     
-
     protected $table = 'reservations';
+
+
+    // belongToManyメソッドでreservationモデルにメソッドを定義し、
+    // 多対多のリレーションの為roomモデルをリレーション
+    public function rooms(){
+        return $this->belongToMany('App\room');
+    }
+
+
 
     public function Hoteluser(){
         return $this->belongTo('App\hoteluser');

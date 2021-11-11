@@ -28,7 +28,7 @@
         <input type="hidden" name="id" value="{{$data->id}}">
         <input type="submit" value="宿泊予約へ">
     </form> --}}
-    <a href="/reserve/search"><br>空き部屋検索へ</a>
+    <a href="/room/search"><br>空き部屋検索へ</a>
 
     @endsection
 

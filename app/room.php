@@ -8,6 +8,15 @@ use App\roomgroup;
 class room extends Model{
     protected $guarded = array('id');
 
+
+    // belongToManyメソッドでroomモデルにメソッドを定義し、
+    // 多対多のリレーションの為reservationモデルをリレーション
+    public function reservations(){
+        return $this->belongToMany('App\reservation');
+    }
+
+
+
     public function roomgroup(){
         return $this->belongTo('App\roomgroup');
     }
