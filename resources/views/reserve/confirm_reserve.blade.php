@@ -10,7 +10,7 @@
     {{-- 確認画面 --}}
     @section('content')
     @parent
-    予約内容をご確認ください
+    <h2>予約内容をご確認ください</h2>
 
 
 
@@ -38,11 +38,40 @@
             <p class="login_error">ログインに失敗しました</p>
         @endif
 
-        <h4>※確認の為お名前(フルネーム)とメールアドレスをご入力下さい※</h4>
+
+        {{-- 入力フォーム --}}
         <form action="/reserve/create" method="POST">
             @csrf
-            
-        <table>
+
+            <h2>【必要事項を入力して下さい】</h2>
+            <h4>※確認の為お名前(フルネーム)と<br>メールアドレスをご入力下さい※</h4>
+
+            <table>
+                @foreach($errors -> get('check_in') as $message)
+                    <tr>
+                        <th class="error_message">ERROR</th>
+                        <td class="error_message">{{$message}}</td>
+                    </tr>
+                @endforeach
+
+                <tr>
+                    <th>チェックイン</th>
+                    <td><input type="date" name="check_in" value="{{old('check_in')}}"></td>
+                </tr>
+
+
+                @foreach($errors -> get('check_out') as $message)
+                    <tr>
+                        <th class="error_message">ERROR</th>
+                        <td class="error_message">{{$message}}</td>
+                    </tr>
+                @endforeach
+
+                <tr>
+                    <th>チェックアウト</th>
+                    <td><input type="date" name="check_out" value="{{old('check_out')}}"></td>
+                </tr>
+                
 
             @foreach($errors -> get('name') as $message)
                 <tr>
@@ -53,7 +82,7 @@
 
             <tr>
                 <th>氏名</th>
-                <td><input type="text" name="name" value="{{old('name')}}"></td>
+                <td><input type="text" name="user_name" value="{{old('user_name')}}"></td>
             </tr>
 
 
@@ -76,7 +105,6 @@
             <input type="hidden" name="num" value="{{$num}}">
             <input type="hidden" name="room_name" value="{{$name}}">
             <input type="hidden" name="person_num" value="{{$people}}">
-
             <input type="submit" value="確認して予約" name="send">
     </form>
     @endsection

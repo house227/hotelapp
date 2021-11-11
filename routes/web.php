@@ -27,6 +27,9 @@ Route::post('reserve', 'ReserveController@show_post');
 
 
 // 部屋予約
+// (getはバリデーションでエラーが出た時の処理だがセッションが必要なので後回し)
+// (postは正常な内容が来た時の更新・登録処理)
+Route::get('reserve/confirm', 'ReserveController@confirm');
 Route::post('reserve/confirm', 'ReserveController@confirm');
 
 Route::post('reserve/create', 'ReserveController@create');

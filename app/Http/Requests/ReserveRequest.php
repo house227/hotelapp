@@ -10,7 +10,7 @@ class ReserveRequest extends FormRequest{
 
     public function authorize(){
 
-        if($this->path() == '/reserve/create'){
+        if($this->path() == 'reserve/create'){
             return true;
         }else{
             return false;
@@ -21,17 +21,25 @@ class ReserveRequest extends FormRequest{
     public function rules(){
 
         return [
-            'name' => 'required',
+            'user_name' => 'required',
             'mail' => 'email|required',
+            'check_in' => 'required',
+            'check_out' => 'required',
+            'check_in' => 'before:check_out',
+            'check_out' => 'after:check_in',
         ];
     }
 
         //メッセージの編集
         public function messages(){
             return[
-                'name.required' => '氏名の入力は必須項目です。',
+                'user_name.required' => '氏名の入力は必須項目です。',
                 'mail.email'  => 'メールアドレスの形式を確認して下さい。',
                 'mail.required' => 'メールアドレスの入力は必須項目です。',
+                'check_in.required' => '日付の入力は必須です',
+                'check_in.before' => '日付の値が不正です',
+                'check_out.required' => '日付の入力は必須です',
+                'check_out.after' => '日付の値が不正です'
             ];
         }
 }

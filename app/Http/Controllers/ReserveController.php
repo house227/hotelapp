@@ -8,6 +8,7 @@ use App\Http\Requests\ReserveRequest;
 
 use App\reserve;
 use App\hoteluser;
+use App\room;
 
 class ReserveController extends Controller{
 
@@ -45,18 +46,55 @@ class ReserveController extends Controller{
     //ID取得の為のDB参照と、予約DBへの新規登録と部屋DB情報の更新 
     public function create(ReserveRequest $request){
 
+        
+
         // ユーザー情報の取得
-        $db_name = hoteluser::where('name', $request->name)->value('name');
+        $db_name = hoteluser::where('name', $request->user_name)->value('name');
         $db_mail = hoteluser::where('mail', $request->mail)->value('mail');
 
         if(isset($db_mail) && isset($db_name)){
-            $user_id = DB::table('hotelusers')->where('name', $request->mail)->
+            $user_id = hoteluser::where('name', $request->user_name)->
             where('mail', $request->mail)->value('id');
 
-            return view('', ['data' => $user_id]);
+            $room_num = room::where('room_num', $request->num)->value('id');
+
+            // reservationテーブル用
+            $reserve_form = [
+                'hoteluser_id' => $user_id,
+                'person_num' => $request->person_num,
+                'check_in' => $request->check_in,
+                'check_out' => $request->check_out,
+            ];
+            
+
+            
+
+
+            // reservationsテーブル(予約)に登録データを新規追加
+            $reserve = new reserve;
+            $reserve_data = $reserve_form;
+            unset($reserve_data['_token']);
+            $reserve->fill($reserve_data)->save();
+
+            // roomsテーブルの予約欄を「yes」に変更する
+            $room = room::find($room_num);
+            $room->reserved = 'yes';
+            $room->save();
+
+            // 予約完了ページ用
+            $datas = $request->all();
+            $datas += ['id' => $user_id];
+
+            return view('reserve.success', $datas);
         }else{
             // 名前とメールアドレスが一致しなかった時の処理
-            return view('reserve.confirm_reserve', ['login_error' => '1']);
+            // 一致しなかった場合はセッションを使う必要があるようなので後回し
+            $datas= [
+                'num' => $request->num,
+                'name' => $request->name,
+                'people' => $request->people,
+            ];
+            return view('reserve.confirm_reserve',$datas);
         }
     }
     
