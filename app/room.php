@@ -11,8 +11,8 @@ class room extends Model{
 
     // belongToManyメソッドでroomモデルにメソッドを定義し、
     // 多対多のリレーションの為reservationモデルをリレーション
-    public function reservations(){
-        return $this->belongToMany('App\reservation');
+    public function reserves(){
+        return $this->belongsToMany('App\reserve', 'reserve_room', 'room_id', 'reservation_id');
     }
 
 

@@ -35,6 +35,26 @@
                         <table>
 
                             @foreach ($item->getdata() as $data)
+
+                                @switch($loop->iteration)
+                                    @case(1)
+                                        <th>部屋番号</th>
+                                        @break
+                                    @case(2)
+                                        <th>ご宿泊人数</th>
+                                        @break
+                                    @case(3)
+                                        <th>チェックイン</th>
+                                        @break
+                                    @case(4)
+                                        <th>チェックアウト</th>
+                                        @break
+                                    @default
+                                        <th>料金</th>
+                                        
+                                @endswitch
+
+                                {{-- reserveモデルからのdataを順次表示 --}}
                                 <tr><td>{{$data}}</td></tr>
                             @endforeach
                             

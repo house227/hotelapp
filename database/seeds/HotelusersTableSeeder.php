@@ -14,6 +14,11 @@ class HotelusersTableSeeder extends Seeder{
                 'mail' => 'taro@tanaka',
                 'tel' => '0120444444',
             ],
+            [
+                'name' => '管理者',
+                'mail' => 'kanri@123',
+                'tel' => '0120111111',
+            ],
         ]);
     }
 }

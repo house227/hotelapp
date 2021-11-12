@@ -26,6 +26,10 @@ class ReserveController extends Controller{
         $reserves = hoteluser::find($request->id)->reserves;
         $user_data = DB::table('hotelusers')->where('id', $request->id)->first();
 
+
+        // 多対多を使って追加の情報を取得
+
+
         return view('reserve.reserve', ['data' => $user_data , 'reserved_data' => $reserves]);
     }
 
