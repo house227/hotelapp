@@ -85,6 +85,18 @@ class ReserveController extends Controller{
             $room->reserved = 'yes';
             $room->save();
 
+
+            // 中間テーブルへデータを保存
+            
+            //上のコードで予約テーブルには新たな予約が入っているので、最新の予約を取得
+            // last()で最後のデータを取得
+            $reserve_last_id = reserve::pluck('id')->last();
+            $reserve_room = reserve::find($reserve_last_id);
+            // 途中
+            $reserve_room->rooms()->attach()
+
+
+
             // 予約完了ページ用
             $datas = $request->all();
             $datas += ['id' => $user_id];
