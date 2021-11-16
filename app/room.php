@@ -18,7 +18,7 @@ class room extends Model{
 
 
     public function roomgroup(){
-        return $this->belongTo('App\roomgroup');
+        return $this->belongsTo('App\roomgroup');
     }
 
     public function scopeSearchNum($query, $num){

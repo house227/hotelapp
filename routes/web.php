@@ -44,3 +44,6 @@ Route::post('room/search', 'RoomsController@search_post');
 //部屋追加ページ
 Route::get('roomadd', 'RoomsController@add_get');
 Route::post('roomadd', 'RoomsController@add_post');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

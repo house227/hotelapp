@@ -9,6 +9,7 @@ use App\Http\Requests\ReserveRequest;
 use App\reserve;
 use App\hoteluser;
 use App\room;
+use App\roomgroup;
 
 class ReserveController extends Controller{
 
@@ -60,7 +61,10 @@ class ReserveController extends Controller{
             $user_id = hoteluser::where('name', $request->user_name)->
             where('mail', $request->mail)->value('id');
 
-            $room_num = room::where('room_num', $request->num)->value('id');
+            $room_data = room::where('room_num', $request->num)->first();
+            $room_id = $room_data->id;
+
+            $room_price = roomgroup::where('id', $room_data->roomgroup_id)->value('price');
 
             // reservationテーブル用
             $reserve_form = [
@@ -81,7 +85,7 @@ class ReserveController extends Controller{
             $reserve->fill($reserve_data)->save();
 
             // roomsテーブルの予約欄を「yes」に変更する
-            $room = room::find($room_num);
+            $room = room::find($room_id);
             $room->reserved = 'yes';
             $room->save();
 
@@ -93,7 +97,14 @@ class ReserveController extends Controller{
             $reserve_last_id = reserve::pluck('id')->last();
             $reserve_room = reserve::find($reserve_last_id);
             // 途中
-            $reserve_room->rooms()->attach()
+            // $reserve_room->rooms()->attach(
+            //     ['reservation_id' => $reserve_last_id],
+            //     ['room_id' => $room_id],
+            //     ['room_num' => $room_data->room_num],
+            //     ['check_in' => $request->check_in],
+            //     ['check_out' => $request->check_out],
+            //     ['price' => $room_price]
+            // );
 
 
 

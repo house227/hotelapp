@@ -12,6 +12,7 @@ class CreateRoomgroupsTable extends Migration
             $table->increments('id');
             $table->string('room_name');
             $table->integer('room_people');
+            $table->integer('price');
             $table->timestamps();
         });
     }

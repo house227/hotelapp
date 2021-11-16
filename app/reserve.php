@@ -23,8 +23,9 @@ class reserve extends Model{
 
 
     public function Hoteluser(){
-        return $this->belongTo('App\hoteluser');
+        return $this->belongsTo('App\hoteluser');
     }
+
     
     public function getData(){
 
@@ -56,12 +57,11 @@ class reserve extends Model{
             $check_out,
             // 料金
             $price,
-            
-
-
 
         ];
         
         return    $user_reserved_data; 
     }
+
+
 }
