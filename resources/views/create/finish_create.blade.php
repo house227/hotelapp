@@ -12,7 +12,7 @@
     @parent
     ご登録ありがとうございました！
     
-    <a href="/login"><br>ログイン画面へ</a>
+    <a href="/loginpage"><br>ログイン画面へ</a>
     @endsection
 
 

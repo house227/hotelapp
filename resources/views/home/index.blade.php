@@ -86,7 +86,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="/login">ログイン</a>
+                    <a href="/loginpage">ログイン</a>
                     <a href="/create">新規登録</a>
                 </div>
             </div>

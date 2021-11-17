@@ -7,8 +7,8 @@ Route::get('/', function () {
 });
 
 // ログイン画面へのルート
-Route::get('login', 'LoginController@index');
-Route::post('login', 'LoginController@check');
+Route::get('loginpage', 'LoginController@index');
+Route::post('loginpage', 'LoginController@check');
 
 //新規登録フォーム画面
 Route::get('create', 'HotelController@user_create');

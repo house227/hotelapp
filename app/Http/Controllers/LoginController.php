@@ -27,7 +27,8 @@ class LoginController extends Controller{
         // $db_tel = DB::table('hotelusers')->where('tel', $tel)->value('tel');
 
         if(isset($db_mail) && isset($db_tel)){
-            $all_data = DB::table('hotelusers')->where('mail', $mail)->first();
+            $all_data = DB::table('hotelusers')->where('mail', $mail)->
+                where('tel', $tel)->first();
             return view('login.success', ['data' => $all_data]);
         }else{
             return view('login.loginpage', ['login_error' => '1']);

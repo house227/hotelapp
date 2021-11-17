@@ -19,7 +19,7 @@
 
     
     {{-- 登録フォーム内容 --}}
-    <form action="/login" method="post">
+    <form action="/loginpage" method="post">
         <table>
             @csrf
 
