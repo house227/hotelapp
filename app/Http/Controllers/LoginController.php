@@ -29,7 +29,14 @@ class LoginController extends Controller{
         if(isset($db_mail) && isset($db_tel)){
             $all_data = DB::table('hotelusers')->where('mail', $mail)->
                 where('tel', $tel)->first();
-            return view('login.success', ['data' => $all_data]);
+
+                // ログイン成功なのでセッションへ情報を保存
+                session(['user_id' => $all_data->id]);
+                session(['user_name' => $all_data->name]);
+                session(['user_mail' => $db_mail]);
+                session(['user_tel' => $all_data->tel]);
+
+            return view('login.success');
         }else{
             return view('login.loginpage', ['login_error' => '1']);
         }

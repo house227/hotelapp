@@ -24,28 +24,15 @@ class ReserveController extends Controller{
 
         // hoteluserモデルに定義したreservesメソッドを呼び出し、
         // hoteluserに紐づく全ての予約を取得
-        $reserves = hoteluser::find($request->id)->reserves;
-        $user_data = DB::table('hotelusers')->where('id', $request->id)->first();
-
+        $reserves = hoteluser::find(session('user_id'))->reserves;
 
         // 多対多を使って追加の情報を取得
 
 
-        return view('reserve.reserve', ['data' => $user_data , 'reserved_data' => $reserves]);
+        return view('reserve.reserve', ['reserved_data' => $reserves]);
     }
 
-    // 予約送信前の確認画面
-    public function confirm(Request $request){
 
-        // 空き部屋データを配列に
-        $datas= [
-            'num' => $request->num,
-            'name' => $request->name,
-            'people' => $request->people,
-        ];
-
-        return view('reserve.confirm_reserve', $datas);
-    }
 
 
     //ID取得の為のDB参照と、予約DBへの新規登録と部屋DB情報の更新 
@@ -112,16 +99,11 @@ class ReserveController extends Controller{
             $datas = $request->all();
             $datas += ['id' => $user_id];
 
-            return view('reserve.success', $datas);
+            return view('reserve.confirm_reserve', $datas);
         }else{
             // 名前とメールアドレスが一致しなかった時の処理
-            // 一致しなかった場合はセッションを使う必要があるようなので後回し
-            $datas= [
-                'num' => $request->num,
-                'name' => $request->name,
-                'people' => $request->people,
-            ];
-            return view('reserve.confirm_reserve',$datas);
+            
+            return view('room.room_reserve');
         }
     }
     

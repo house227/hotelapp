@@ -9,10 +9,10 @@
 
     @section('content')
     {{-- 予約状況確認ページ --}}
-        <h2>ようこそ {{$data->name}} 様</h2>
+        <h2>ようこそ {{Session::get('user_name')}} 様</h2>
 
         @parent
-        <h3>【 {{$data->name}} 様 の予約状況 】</h3>
+        <h3>【 {{Session::get('user_name')}} 様 の予約状況 】</h3>
 
             <table>
                 <tr>
@@ -26,7 +26,7 @@
 
                 </tr>
                 <tr>
-                    <td>ID.{{$data->id}}: {{$data->name}} 様</td>
+                    <td>ID.{{Session::get('user_id')}}: {{Session::get('user_name')}} 様</td>
 
                     {{-- 外側ループ：IDに該当する予約データ配列から取り出す --}}
                     @foreach ($reserved_data as $item)

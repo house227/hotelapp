@@ -27,36 +27,44 @@
 
 
         {{-- 入力フォーム --}}
-        <form action="/reserve/create" method="POST">
+        <form action="/room/confirm" method="POST">
             @csrf
 
-            <h2>【予約内容をご確認ください】</h2>
+            <h2>【宿泊日を入力して下さい】</h2>
 
             <table>
                 <tr>
                     <th>予約者名</th><td>{{Session::get('user_name')}}様</td>
                 </tr>
-
                 <tr>
                     <th>ご宿泊人数</th><td>{{Session::get('rest_num')}}名様</td>
                 </tr>
 
-                <tr>
-                    <th>部屋名</th><td>{{Session::get('rest_num')}}名様</td>
-                </tr>
+
+                @foreach($errors -> get('check_in') as $message)
+                    <tr>
+                        <th class="error_message">ERROR</th>
+                        <td class="error_message">{{$message}}</td>
+                    </tr>
+                @endforeach
 
                 <tr>
-                    <th>部屋番号</th><td>{{Session::get('rest_num')}}名様</td>
+                    <th>チェックイン</th>
+                    <td><input type="date" name="check_in" value="{{old('check_in')}}"></td>
                 </tr>
 
-                <tr>
-                    <th>チェックイン日</th><td>{{Session::get('rest_num')}}名様</td>
-                </tr>
-                
-                <tr>
-                    <th>チェックアウト日</th><td>{{Session::get('rest_num')}}名様</td>
-                </tr>
 
+                @foreach($errors -> get('check_out') as $message)
+                    <tr>
+                        <th class="error_message">ERROR</th>
+                        <td class="error_message">{{$message}}</td>
+                    </tr>
+                @endforeach
+
+                <tr>
+                    <th>チェックアウト</th>
+                    <td><input type="date" name="check_out" value="{{old('check_out')}}"></td>
+                </tr>
                 
         </table>
 

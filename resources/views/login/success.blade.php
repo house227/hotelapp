@@ -9,7 +9,7 @@
 
     @section('content')
     {{-- ログイン成功 --}}
-            <h2>ようこそ {{$data->name}} 様</h2>
+            <h2>ようこそ {{Session::get('user_name')}} 様</h2>
 
     @endsection
     
@@ -19,7 +19,7 @@
 
     <form action="/reserve" method="POST">
         @csrf
-        <input type="hidden" name="id" value="{{$data->id}}">
+        {{-- <input type="hidden" name="id" value="{{$data->id}}"> --}}
         <input type="submit" value="予約状況確認へ">
     </form>
 

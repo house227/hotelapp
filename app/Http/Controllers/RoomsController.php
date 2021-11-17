@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RoomRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http_Requests_RoomRequest;
+use App\Http\Requests_RoomRequest;
+use App\Http\Requests\ReserveRequest;
 use App\room;
 use App\roomgroup;
 
@@ -43,6 +44,7 @@ class RoomsController extends Controller
             'room_name' => $search_room_name,
         ];
         
+        $request->session()->put('rest_num', $num);
         return view('room.find', $datas);
     }
 
@@ -57,4 +59,25 @@ class RoomsController extends Controller
     {
         return view('room.add');
     }
+
+        // 予約送信前の確認画面
+        public function reserve(Request $request){
+
+            // 部屋情報をセッションへ保存
+            $request->session()->put('room_num', $request->num);
+            $request->session()->put('room_name', $request->name);
+            $request->session()->put('room_people', $request->people);
+    
+            return view('room.room_reserve');
+        }
+
+
+        public function confirm(ReserveRequest $request){
+
+            // 部屋情報をセッションへ保存
+            $request->session()->put('check_in', $request->check_in);
+            $request->session()->put('check_out', $request->check_out);
+    
+            return view('reserve.confirm_reserve');
+        }
 }

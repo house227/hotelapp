@@ -19,7 +19,7 @@
 
                {{-- 空き部屋情報は連想配列で返ってるのでforeachを使う--}}
                @foreach ($room_num as $data)
-               <form action="/reserve/confirm" method="POST">
+               <form action="/room/reserve" method="POST">
                 @csrf
 
                <tr>
