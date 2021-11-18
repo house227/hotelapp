@@ -42,19 +42,19 @@
                 </tr>
 
                 <tr>
-                    <th>部屋名</th><td>{{Session::get('rest_num')}}名様</td>
+                    <th>部屋名</th><td>{{Session::get('room_name')}}</td>
                 </tr>
 
                 <tr>
-                    <th>部屋番号</th><td>{{Session::get('rest_num')}}名様</td>
+                    <th>部屋番号</th><td>{{Session::get('room_num')}}号室</td>
                 </tr>
 
                 <tr>
-                    <th>チェックイン日</th><td>{{Session::get('rest_num')}}名様</td>
+                    <th>チェックイン日</th><td>{{Session::get('check_in')}}</td>
                 </tr>
                 
                 <tr>
-                    <th>チェックアウト日</th><td>{{Session::get('rest_num')}}名様</td>
+                    <th>チェックアウト日</th><td>{{Session::get('check_out')}}</td>
                 </tr>
 
                 

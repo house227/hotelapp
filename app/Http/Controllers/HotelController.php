@@ -7,10 +7,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\hoteluser;
 
-class HotelController extends Controller
+class HotelController extends Controller{
+
+    // ホーム画面
+    public function index(){
+
+        // セッションの削除
+        session()->flush();
+
+        return view('home.index');
+    }
 
 
-{
     // 新規ユーザー登録画面を返す
     public function user_create(){
         return view('create.user_create', ['msg' => '登録に必要なお客様情報を入力してください']);

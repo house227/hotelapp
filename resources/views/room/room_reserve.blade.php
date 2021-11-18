@@ -21,9 +21,7 @@
         @if (count($errors) > 0)
             <p>入力内容に問題があります。確認して下さい。</p>
         @endif
-        @if (isset($login_error))
-            <p class="login_error">ログインに失敗しました</p>
-        @endif
+        
 
 
         {{-- 入力フォーム --}}

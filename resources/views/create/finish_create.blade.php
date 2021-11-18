@@ -13,6 +13,7 @@
     ご登録ありがとうございました！
     
     <a href="/loginpage"><br>ログイン画面へ</a>
+    <a href="/"><br>ホーム画面へ</a>
     @endsection
 
 

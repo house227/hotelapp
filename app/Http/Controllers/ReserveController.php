@@ -36,29 +36,29 @@ class ReserveController extends Controller{
 
 
     //ID取得の為のDB参照と、予約DBへの新規登録と部屋DB情報の更新 
-    public function create(ReserveRequest $request){
+    public function create(Request $request){
 
         
 
         // ユーザー情報の取得
-        $db_name = hoteluser::where('name', $request->user_name)->value('name');
-        $db_mail = hoteluser::where('mail', $request->mail)->value('mail');
+        $db_name = hoteluser::where('name', session('user_name'))->value('name');
+        $db_mail = hoteluser::where('mail', session('user_mail'))->value('mail');
 
         if(isset($db_mail) && isset($db_name)){
-            $user_id = hoteluser::where('name', $request->user_name)->
-            where('mail', $request->mail)->value('id');
+            // $user_id = hoteluser::where('name', session('user_name'))->
+            // where('mail', session('user_mail'))->value('id');
 
-            $room_data = room::where('room_num', $request->num)->first();
+            $room_data = room::where('room_num', session('room_num'))->first();
             $room_id = $room_data->id;
 
             $room_price = roomgroup::where('id', $room_data->roomgroup_id)->value('price');
 
             // reservationテーブル用
             $reserve_form = [
-                'hoteluser_id' => $user_id,
-                'person_num' => $request->person_num,
-                'check_in' => $request->check_in,
-                'check_out' => $request->check_out,
+                'hoteluser_id' => session('user_id'),
+                'person_num' => session('rest_num'),
+                'check_in' => session('check_in'),
+                'check_out' => session('check_out'),
             ];
             
 
@@ -96,10 +96,8 @@ class ReserveController extends Controller{
 
 
             // 予約完了ページ用
-            $datas = $request->all();
-            $datas += ['id' => $user_id];
 
-            return view('reserve.confirm_reserve', $datas);
+            return view('reserve.success');
         }else{
             // 名前とメールアドレスが一致しなかった時の処理
             

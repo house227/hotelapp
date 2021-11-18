@@ -2,9 +2,8 @@
 
 use App\Http\Controllers\RoomsController;
 
-Route::get('/', function () {
-    return view('home.index');
-});
+
+Route::get('/', 'HotelController@index');
 
 // ログイン画面へのルート
 Route::get('loginpage', 'LoginController@index');
@@ -23,6 +22,7 @@ Route::post('create', 'HotelController@confirm_data');
 Route::post('create/create_db', 'HotelController@create_db');
 
 // ユーザーに対する予約を表示
+Route::get('reserve', 'ReserveController@show_post');
 Route::post('reserve', 'ReserveController@show_post');
 
 

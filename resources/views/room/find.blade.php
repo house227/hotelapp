@@ -35,7 +35,7 @@
 
                         {{-- if文で振り分けられた部屋名をvalueとして送る --}}
                         <input type="hidden" value="{{$item->room_name}}" name="name">
-                        <td>{{$item->room_people}}人</td>
+                        <td>{{$item->room_people}}名様まで</td>
                         <input type="hidden" value="{{$item->room_people}}" name="people">
                     @endif
 
