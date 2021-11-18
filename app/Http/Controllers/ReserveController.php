@@ -84,14 +84,12 @@ class ReserveController extends Controller{
             $reserve_last_id = reserve::pluck('id')->last();
             $reserve_room = reserve::find($reserve_last_id);
             // 途中
-            // $reserve_room->rooms()->attach(
-            //     ['reservation_id' => $reserve_last_id],
-            //     ['room_id' => $room_id],
-            //     ['room_num' => $room_data->room_num],
-            //     ['check_in' => $request->check_in],
-            //     ['check_out' => $request->check_out],
-            //     ['price' => $room_price]
-            // );
+            $room_num = '100';
+            $reserve_room->rooms()->attach(
+                ['reservation_id' => $reserve_last_id],
+                ['room_id' => $room_id],
+            );
+            $reserve_room->rooms()->updateExistingPivot();
 
 
 
