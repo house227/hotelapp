@@ -79,36 +79,32 @@ class ReserveController extends Controller{
 
             // 中間テーブルへデータを保存
             
-            //上のコードで予約テーブルには新たな予約が入っているので、最新の予約を取得
+            //$reserve_last_id: 上のコードで予約テーブルには新たな予約が入っているので、最新の予約を取得
             // last()で最後のデータを取得
             $reserve_last_id = reserve::pluck('id')->last();
             $reserve_room = reserve::find($reserve_last_id);
-
-            // なぜか中間テーブルの主キーのidと外部キーが同じ値の時だけ更新される
-            $reserve_room->rooms()->attach(
-                ['reservation_id' => $reserve_last_id],
-                ['room_id' => $room_id],
-            );
-
+            
+            // 中間テーブルの最後のレコードの「id」を取得
             $last_id = DB::table('reserve_room')->pluck('reservation_id')->last();
-            echo($last_id);
-            $reserve_room->rooms()->
-            updateExistingPivot($last_id,
-                [
+
+
+            // attachを使い中間テーブルへデータの追加
+            // 最新の予約の情報を中間テーブルへ保存する為$reserve_roomを使用し
+            // リレーションしているreserveモデルのrooms()へattach()
+            // 中間テーブルの$last_id番(最新の行)へ配列内のデータを入れる
+            // attachなので同じ値があるかの確認は無し
+            $reserve_room->rooms()->attach([
+                $last_id => [
+                    'reservation_id' => $reserve_last_id,
+                    'room_id' => $room_id,
                     'room_num' => session('room_num'),
                     'check_in' => session('check_in'),
                     'check_out' => session('check_out'),
                     'price' => $room_price
                 ]
-                // ['check_in' => session('check_in')],
-                // ['check_out' => session('check_out')],
-                // ['price' => $room_price]
+            ]
+                
             );
-
-            // ['room_num' => $room_num],
-            // ['check_in' => session('check_in')],
-            // ['check_out' => session('check_out')],
-            // ['price' => $room_price]
 
             // 予約完了ページ用
 
