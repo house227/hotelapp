@@ -12,8 +12,10 @@ class HotelController extends Controller{
     // ホーム画面
     public function index(){
 
+        
+
         // セッションの削除
-        session()->flush();
+        // session()->flush();
 
         return view('home.index');
     }
