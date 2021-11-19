@@ -103,7 +103,7 @@ class ReserveController extends Controller{
                     'price' => $room_price
                 ]
             ]
-                
+            
             );
 
             // 予約完了ページ用
