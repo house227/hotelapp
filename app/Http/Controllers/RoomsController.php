@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests_RoomRequest;
 use App\Http\Requests\ReserveRequest;
+use App\Http\Requests\SearchRequest;
 use App\room;
 use App\roomgroup;
 
@@ -21,7 +22,7 @@ class RoomsController extends Controller
     }
 
     // 検索画面からのポスト送信
-    public function search_post(Request $request)
+    public function search_post(SearchRequest $request)
     {
         //reservedで予約済みか否か（yes=予約済み no=未）
         $reserved = 'no';

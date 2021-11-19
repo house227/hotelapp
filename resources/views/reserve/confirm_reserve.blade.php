@@ -62,6 +62,8 @@
 
             <input type="submit" value="確認して予約" name="send">
     </form>
+
+    <a href="/room/search"><br>空き部屋検索へ戻る</a>
     @endsection
 
 
