@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\roomgroup;
+use Carbon\Carbon;
 
 class room extends Model{
     protected $guarded = array('id');
@@ -20,6 +21,18 @@ class room extends Model{
     public function roomgroup(){
         return $this->belongsTo('App\roomgroup');
     }
+
+
+    // チェックイン/チェックアウト日を引数に、チェックイン可能か調べるスコープ
+    public function scopeSearchCheckin($query, $check_in, $check_out){
+        // 引数のINが予約のINよりも前で かつ 引数OUTが予約INよりも前
+        // または
+        // 引数INが予約OUTより先で かつ 引数OUTが予約OUTよりも先
+        // でもデータベースから引っ張るから違うかも
+        // どこかでIF文使った方が？ 
+        $data = reserve::where()
+    }
+
 
     public function scopeSearchNum($query, $num){
         // pluck()でカラム値をリストで取得

@@ -10,6 +10,7 @@ use App\Http\Requests\ReserveRequest;
 use App\Http\Requests\SearchRequest;
 use App\room;
 use App\roomgroup;
+use App\reserve;
 
 class RoomsController extends Controller
 {
@@ -33,8 +34,8 @@ class RoomsController extends Controller
 
         // 未予約かつ、選択された部屋種かつ、宿泊人数が一致する
         // クエリを取得（条件に合う空いている部屋の情報が欲しい）
-        $search_room_num = room::SearchReserved($reserved)->
-            SearchGroup($group)->SearchNum($num)->get();
+        // ここを編集中
+        $search_room_num = room::SearchGroup($group)->SearchNum($num)->get();
 
         // 上記で作成した空き部屋検索結果を使い、別テーブルにある
         // 部屋名を検索しクエリを取得
