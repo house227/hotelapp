@@ -30,7 +30,11 @@ class room extends Model{
         // 引数INが予約OUTより先で かつ 引数OUTが予約OUTよりも先
         // でもデータベースから引っ張るから違うかも
         // どこかでIF文使った方が？ 
-        $data = reserve::where()
+
+        // 既予約の期間内に申し込みのチェックインが入る部屋IDを取得。
+        $data = reserve::where('check_in', '>=', $check_in)->where('check_out', '<=', $check_in)->
+        orwhere('check_in', '>=', $check_out)->where('check_out', '<=', $check_out)->
+        pluck('id');
     }
 
 
