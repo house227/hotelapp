@@ -15,12 +15,13 @@ class LoginController extends Controller{
 
     public function check(LoginRequest $request){
         
+        // 受け取ったメアドと電話番号を使いやすいよう仮保存
         $mail = $request->mail;
         $tel = $request->tel;
 
         //モデルを使って検索
-        $db_mail = hoteluser::where('mail', $mail)->value('mail');
-        $db_tel = hoteluser::where('tel', $tel)->value('tel');
+        $db_mail_id = hoteluser::where('mail', $mail)->value('id');
+        $db_tel_id = hoteluser::where('tel', $tel)->value('id');
 
         // 管理者の場合のログイン先
         
@@ -29,14 +30,18 @@ class LoginController extends Controller{
         // $db_mail = DB::table('hotelusers')->where('mail', $mail)->value('mail');
         // $db_tel = DB::table('hotelusers')->where('tel', $tel)->value('tel');
 
-        if(isset($db_mail) && isset($db_tel)){
-            $all_data = DB::table('hotelusers')->where('mail', $mail)->
-                where('tel', $tel)->first();
+        // メアドと電話どちらかが別の人と一致してしまうとエラーが出る
+        // ※メアドと番号が同一人物のものか調べる必要がある※
+
+        if($db_mail_id === $db_tel_id){
+
+            $all_data = hoteluser::where('mail', $mail)->
+                where('tel', $tel)->where('id', $db_mail_id)->first();
 
                 // ログイン成功なのでセッションへ情報を保存
                 session(['user_id' => $all_data->id]);
                 session(['user_name' => $all_data->name]);
-                session(['user_mail' => $db_mail]);
+                session(['user_mail' => $all_data->mail]);
                 session(['user_tel' => $all_data->tel]);
 
             return view('login.success');
