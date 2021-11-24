@@ -64,4 +64,22 @@ class reserve extends Model{
     }
 
 
+    // チェックイン/チェックアウト日を引数に、チェックイン可能か調べるスコープ
+    public function scopeSearchCheckin($query, $check_in){
+
+        // 既予約の期間内に申し込みのチェックインが入る部屋IDを取得。
+        // reservationテーブルの主キーを取ればコントローラで中間テーブルを使って部屋番号が取れる？
+        return $query->where('check_in', '<=', $check_in)->
+        where('check_out', '>=', $check_in);
+
+    }
+    
+    public function scopeSearchCheckout($query, $check_out){
+
+        // 既予約の期間内に申し込みのチェックアウトが入る部屋IDを取得。
+        return $query->where('check_in', '<=', $check_out)->
+        where('check_out', '>=', $check_out);
+    }
+
+
 }

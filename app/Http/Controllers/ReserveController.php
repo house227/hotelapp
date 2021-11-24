@@ -26,7 +26,6 @@ class ReserveController extends Controller{
         // hoteluserに紐づく全ての予約を取得
         $reserves = hoteluser::find(session('user_id'))->reserves;
 
-        // 多対多を使って追加の情報を取得
 
 
         return view('reserve.reserve', ['reserved_data' => $reserves]);
@@ -71,10 +70,7 @@ class ReserveController extends Controller{
             unset($reserve_data['_token']);
             $reserve->fill($reserve_data)->save();
 
-            // roomsテーブルの予約欄を「yes」に変更する
-            $room = room::find($room_id);
-            $room->reserved = 'yes';
-            $room->save();
+
 
 
             // 中間テーブルへデータを保存

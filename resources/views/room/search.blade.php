@@ -77,6 +77,7 @@
     @endsection
 
     @section('content2')
+    <a href="/reserve">予約状況確認へ</a>
     <a href="/"><br>ホーム画面へ</a>
     @endsection
 

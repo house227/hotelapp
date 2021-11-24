@@ -25,11 +25,6 @@ class roomgroup extends Model{
         return $query->whereIn('id', $var);
     }
 
-    public function scopeSearchReserved($query, $reserved){
-        $room_reserved = room::where('reserved', $reserved)->pluck('roomgroup_id');
-        // 予約済みかどうかを調べる。
-        return $query->whereIn('id', $room_reserved);
-    }
 
     public function scopeSearchGroup($query, $group){
 

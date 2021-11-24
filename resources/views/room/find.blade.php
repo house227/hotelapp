@@ -12,20 +12,19 @@
     {{-- 検索結果 --}}
 
         <table>
-           
+           <h4>【{{Session::get('check_in')}} ～ {{Session::get('check_out')}}のご宿泊で予約可能なお部屋です】</h4>
                <tr>
                     <th>部屋番号 </th><th>部屋名</th><th>宿泊可能人数</th><th>予約はこちら</th>
                </tr>
 
                {{-- 空き部屋情報は連想配列で返ってるのでforeachを使う--}}
                @foreach ($room_num as $data)
-               <form action="/room/reserve" method="POST">
-                @csrf
-
                <tr>
+                <form action="/room/confirm" method="POST">
+                    @csrf
                     <td>{{$data->room_num}}号室</td>
 
-                {{-- 同じくforeachで表示 --}}
+                 {{-- 同じくforeachで表示 --}}
                     @foreach ($room_name as $item)
 
 
@@ -48,8 +47,8 @@
                         <td>
                             <input type="submit" name="send" value="予約する">
                         </td>
-                    </form>
-               </tr>
+                </form>
+            </tr>
            @endforeach
         </table>
 

@@ -13,7 +13,7 @@ class room extends Model{
     // belongToManyメソッドでroomモデルにメソッドを定義し、
     // 多対多のリレーションの為reservationモデルをリレーション
     public function reserves(){
-        return $this->belongsToMany('App\reserve', 'reserve_room', 'room_id', 'reservation_id');
+        return $this->belongsToMany('App\reserve', 'reserve_room', 'room_id', 'reservation_id')->withPivot('room_num', 'price','check_in', 'check_out');
     }
 
 
@@ -23,19 +23,7 @@ class room extends Model{
     }
 
 
-    // チェックイン/チェックアウト日を引数に、チェックイン可能か調べるスコープ
-    public function scopeSearchCheckin($query, $check_in, $check_out){
-        // 引数のINが予約のINよりも前で かつ 引数OUTが予約INよりも前
-        // または
-        // 引数INが予約OUTより先で かつ 引数OUTが予約OUTよりも先
-        // でもデータベースから引っ張るから違うかも
-        // どこかでIF文使った方が？ 
-
-        // 既予約の期間内に申し込みのチェックインが入る部屋IDを取得。
-        $data = reserve::where('check_in', '>=', $check_in)->where('check_out', '<=', $check_in)->
-        orwhere('check_in', '>=', $check_out)->where('check_out', '<=', $check_out)->
-        pluck('id');
-    }
+    
 
 
     public function scopeSearchNum($query, $num){
@@ -62,22 +50,5 @@ class room extends Model{
         
     }
 
-    public function scopeSearchReserved($query, $reserved){
-        // 予約済みかどうかを調べる。
-        return $query->where('reserved', $reserved);
-    }
-
-    // public function scopeSearchNumber($query, $people){
-        
-    //     return $query->where('reserved', $people);
-    // }
-
-
-
-
-    // public static $rules = array(
-    //     'roomgroup_id' => 'required',
-    //     'room_num' => 'required'|'numeric',
-    // );
     
 }

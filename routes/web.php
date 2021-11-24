@@ -35,11 +35,7 @@ Route::post('reserve/confirm', 'ReserveController@confirm');
 Route::post('reserve/create', 'ReserveController@create');
 
 
-// 部屋選択時の予約画面
-Route::get('room/reserve', 'RoomsController@reserve');
-Route::post('room/reserve', 'RoomsController@reserve');
-
-// 宿泊情報入力後確認画面
+// 宿泊部屋選択後の内容確認画面
 Route::post('room/confirm', 'RoomsController@confirm');
 
 

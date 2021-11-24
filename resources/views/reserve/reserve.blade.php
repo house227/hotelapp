@@ -14,6 +14,9 @@
         @parent
         <h3>【 {{Session::get('user_name')}} 様 の予約状況 】</h3>
 
+            @if (count($reserved_data) > 0)
+                
+
             <table>
                 <tr>
                     <th>IDと氏名</th>
@@ -63,8 +66,11 @@
                         
                     @endforeach
                 </tr>
-            </table>
+             </table>
 
+             @else
+                <h2>予約情報なし</h2>
+            @endif
 
     @endsection
     
