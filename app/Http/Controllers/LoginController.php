@@ -22,6 +22,9 @@ class LoginController extends Controller{
         $db_mail = hoteluser::where('mail', $mail)->value('mail');
         $db_tel = hoteluser::where('tel', $tel)->value('tel');
 
+        // 管理者の場合のログイン先
+        
+
         //モデルを使わない方法
         // $db_mail = DB::table('hotelusers')->where('mail', $mail)->value('mail');
         // $db_tel = DB::table('hotelusers')->where('tel', $tel)->value('tel');
