@@ -20,13 +20,12 @@ class ReserveController extends Controller{
         return view('reserve.new_reserve');
     }
 
+
     public function show_post(Request $request){
 
         // hoteluserモデルに定義したreservesメソッドを呼び出し、
         // hoteluserに紐づく全ての予約を取得
         $reserves = hoteluser::find(session('user_id'))->reserves;
-
-
 
         return view('reserve.reserve', ['reserved_data' => $reserves]);
     }
@@ -37,13 +36,11 @@ class ReserveController extends Controller{
     //ID取得の為のDB参照と、予約DBへの新規登録と部屋DB情報の更新 
     public function create(Request $request){
 
-        
-
         // ユーザー情報の取得
-        $db_name = hoteluser::where('name', session('user_name'))->value('name');
-        $db_mail = hoteluser::where('mail', session('user_mail'))->value('mail');
+        $db_name_id = hoteluser::where('name', session('user_name'))->value('id');
+        $db_mail_id = hoteluser::where('mail', session('user_mail'))->value('id');
 
-        if(isset($db_mail) && isset($db_name)){
+        if($db_mail_id === $db_name_id){
             // $user_id = hoteluser::where('name', session('user_name'))->
             // where('mail', session('user_mail'))->value('id');
 
@@ -61,9 +58,7 @@ class ReserveController extends Controller{
             ];
             
 
-            
-
-
+    
             // reservationsテーブル(予約)に登録データを新規追加
             $reserve = new reserve;
             $reserve_data = $reserve_form;
@@ -103,13 +98,16 @@ class ReserveController extends Controller{
             );
 
             // 予約完了ページ用
-
             return view('reserve.success');
         }else{
             // 名前とメールアドレスが一致しなかった時の処理
-            
             return view('room.room_reserve');
         }
+    }
+
+
+    public function show_hotel_reserve(){
+        return view('reserve.')
     }
     
 }

@@ -24,7 +24,9 @@ class LoginController extends Controller{
         $db_tel_id = hoteluser::where('tel', $tel)->value('id');
 
         // 管理者の場合のログイン先
-        
+        if($db_mail_id === 2 && $db_tel_id === 2){
+            // 管理者ページへ
+        }
 
         //モデルを使わない方法
         // $db_mail = DB::table('hotelusers')->where('mail', $mail)->value('mail');

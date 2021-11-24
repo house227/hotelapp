@@ -5,6 +5,9 @@ use App\Http\Controllers\RoomsController;
 
 Route::get('/', 'HotelController@index');
 
+// 管理者用ルート
+Route::get('hotel_reserved', 'ReserveController@show_hotel_reserve');
+
 // ログイン画面へのルート
 Route::get('loginpage', 'LoginController@index');
 Route::post('loginpage', 'LoginController@check');
