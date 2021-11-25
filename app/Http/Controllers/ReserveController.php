@@ -110,10 +110,11 @@ class ReserveController extends Controller{
 
         // ※全予約を取得して送る※
         // 編集中
+        $reserved = reserve::with('rooms')->get();
 
 
 
-        return view('reserve.kanri_reserve');
+        return view('reserve.kanri_reserve', ['items' => $reserved]);
     }
     
 }

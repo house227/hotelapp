@@ -14,6 +14,15 @@
         @parent
         <h3>【 現在の全予約状況 】</h3>
 
+        <table>
+            <th>予約テーブル：人数</th><th>中間テーブル：部屋番号</th>
+            @foreach ($items as $data)
+               <tr>
+                   <td>{{$data->person_num}}</td>
+                   <td>{{$data->rooms->first()->room_num}}</td>
+               </tr>
+            @endforeach
+        </table>
            
 
     @endsection
