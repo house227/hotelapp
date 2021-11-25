@@ -105,9 +105,15 @@ class ReserveController extends Controller{
         }
     }
 
-
+    // 管理人用予約確認ページ
     public function show_hotel_reserve(){
-        return view('reserve.')
+
+        // ※全予約を取得して送る※
+        // 編集中
+
+
+
+        return view('reserve.kanri_reserve');
     }
     
 }

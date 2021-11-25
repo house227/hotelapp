@@ -26,6 +26,7 @@ class LoginController extends Controller{
         // 管理者の場合のログイン先
         if($db_mail_id === 2 && $db_tel_id === 2){
             // 管理者ページへ
+            return view('login.kanri_login');
         }
 
         //モデルを使わない方法

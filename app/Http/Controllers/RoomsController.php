@@ -43,7 +43,10 @@ class RoomsController extends Controller
         // ※全ての部屋情報から予約が被ってる部屋を除く※
         // すでに予約のある部屋データを取る為に、予約IDを取得
         // スコープのチェーンの間に「orWhere」を追加する事で「または」の形に出来る。
-        $reserved_id = reserve::SearchCheckin($request->check_in)->orWhere->SearchCheckout($request->check_out)->get();
+        // ！！検索した日が既予約の日を包み込むと予約出来てしまう！！
+        $reserved_id = reserve::SearchCheckin($request->check_in)->orWhere->SearchCheckout($request->check_out)
+        ->orWhere->SearchCheckReserve($request->check_in,$request->check_out)
+        ->get();
 
         // 中間テーブル経由で上記で取得した予約IDから部屋番号を取得
         foreach($reserved_id as $item){
