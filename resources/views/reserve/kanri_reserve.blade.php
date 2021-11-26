@@ -16,9 +16,12 @@
 
         <table>
             <th>予約テーブル：人数</th><th>中間テーブル：部屋番号</th>
+            {{-- $itemsにはReserveControllerから来たEagerローディングで得たデータがある --}}
             @foreach ($items as $data)
                <tr>
+                   {{-- 得たデータからreserveDBから人数を引き出した --}}
                    <td>{{$data->person_num}}</td>
+                   {{-- 得たデータから中間テーブルにアクセスし、部屋番号を取得した --}}
                    <td>{{$data->rooms->first()->room_num}}</td>
                </tr>
             @endforeach

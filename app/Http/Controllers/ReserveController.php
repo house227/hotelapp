@@ -110,6 +110,9 @@ class ReserveController extends Controller{
 
         // ※全予約を取得して送る※
         // 編集中
+        // EagerローディングによりDBアクセス増加のN+1問題の対応
+        // withを使う事で必要な情報をまとめてから取得してくれる。引数にはリレーション先
+        // 今回引数には中間テーブルとリレーションしているroomsを指定モデルはreserve
         $reserved = reserve::with('rooms')->get();
 
 
