@@ -14,18 +14,40 @@
         @parent
         <h3>【 現在の全予約状況 】</h3>
 
+        {{-- テスト
         <table>
-            <th>予約テーブル：人数</th><th>中間テーブル：部屋番号</th>
-            {{-- $itemsにはReserveControllerから来たEagerローディングで得たデータがある --}}
-            @foreach ($items as $data)
-               <tr>
-                   {{-- 得たデータからreserveDBから人数を引き出した --}}
-                   <td>{{$data->person_num}}</td>
-                   {{-- 得たデータから中間テーブルにアクセスし、部屋番号を取得した --}}
-                   <td>{{$data->rooms->first()->room_num}}</td>
-               </tr>
+            @foreach ($items as $item)
+            <tr>
+                <th>{{$item->Hoteluser->name}}</th>
+
+                        @foreach ($item->rooms as $data)
+                    <tr>
+                        <td>部屋番号:</td><td>{{$data->room_num}}</td>
+                    </tr>
+                @endforeach
+
+                
+            </tr>
             @endforeach
-        </table>
+        </table> --}}
+        @foreach ($items as $data)
+            <table>
+                <tr><th>{{$data->Hoteluser->name}}</th></tr>
+                {{-- $itemsにはReserveControllerから来たEagerローディングで得たデータがある --}}
+                
+                <tr>
+                    {{-- 得たデータからreserveDBから人数を引き出した --}}
+                    <td>{{$data->person_num}}</td>
+                </tr>
+                <tr>
+                    {{-- 得たデータから中間テーブルにアクセスし、部屋番号を取得した --}}
+                    <td>{{$data->rooms->first()->room_num}}</td>
+                </tr>
+
+                
+            </table>
+        @endforeach
+             
            
 
     @endsection

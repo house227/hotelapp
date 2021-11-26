@@ -49,6 +49,10 @@ class RoomsController extends Controller
         ->get();
 
         // 中間テーブル経由で上記で取得した予約IDから部屋番号を取得
+        // 予約の被っているデータが全て入った$reserved_idをforeachで回し、
+        // 空の配列へ部屋番号を入れる。
+        // reserve::find($item->id)で予約の被っているレコードを指定し、
+        // それに関係する中間テーブルレコードを呼び出し、部屋番号を取り出す
         foreach($reserved_id as $item){
             $rooms_data[] = reserve::find($item->id)->rooms->first()->room_num;
         }
