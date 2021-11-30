@@ -30,23 +30,27 @@
             </tr>
             @endforeach
         </table> --}}
-        @foreach ($items as $data)
-            <table>
-                <tr><th>{{$data->Hoteluser->name}}</th></tr>
-                {{-- $itemsにはReserveControllerから来たEagerローディングで得たデータがある --}}
-                
-                <tr>
-                    {{-- 得たデータからreserveDBから人数を引き出した --}}
-                    <td>{{$data->person_num}}</td>
-                </tr>
-                <tr>
-                    {{-- 得たデータから中間テーブルにアクセスし、部屋番号を取得した --}}
-                    <td>{{$data->rooms->first()->room_num}}</td>
-                </tr>
 
-                
+            <table>
+                <th>予約ID</th><th>氏名</th><th>人数</th><th>部屋番号</th>
+                <th>チェックイン</th><th>チェックアウト</th>
+                @foreach ($reserved as $data)
+                    <tr>
+                        <td>{{$data->id}}</td>
+                        <td>{{$data->Hoteluser->name}}</td>
+                        {{-- 得たデータからreserveDBから人数を引き出した --}}
+                        <td>{{$data->person_num}}人</td>
+                        {{-- 得たデータから中間テーブルにアクセスし、部屋番号を取得した --}}
+                        <td>{{$data->rooms->first()->room_num}}号室</td>
+                        <td>{{$data->check_in}}</td>
+                        <td>{{$data->check_out}}</td>
+                    </tr>
+                    {{-- $itemsにはReserveControllerから来たEagerローディングで得たデータがある --}}
+
+
+                @endforeach
             </table>
-        @endforeach
+
              
            
 

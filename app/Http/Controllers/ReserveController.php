@@ -113,11 +113,11 @@ class ReserveController extends Controller{
         // EagerローディングによりDBアクセス増加のN+1問題の対応
         // withを使う事で必要な情報をまとめてから取得してくれる。引数にはリレーション先
         // 今回引数には中間テーブルとリレーションしているroomsを指定モデルはreserve
-        $reserved = reserve::with('rooms')->get();
+        $reserved = reserve::with('rooms')->orderBy('check_in', 'asc')->get();
 
 
 
-        return view('reserve.kanri_reserve', ['items' => $reserved]);
+        return view('reserve.kanri_reserve', ['reserved' => $reserved]);
     }
     
 }
