@@ -106,14 +106,19 @@ class ReserveController extends Controller{
     }
 
     // 管理人用予約確認ページ
-    public function show_hotel_reserve(){
+    public function show_hotel_reserve(Request $request){
 
         // ※全予約を取得して送る※
         // 編集中
         // EagerローディングによりDBアクセス増加のN+1問題の対応
         // withを使う事で必要な情報をまとめてから取得してくれる。引数にはリレーション先
         // 今回引数には中間テーブルとリレーションしているroomsを指定モデルはreserve
-        $reserved = reserve::with('rooms')->orderBy('check_in', 'asc')->get();
+        if(isset($request->sort)){
+            $sort = $request->sort;
+            $reserved = reserve::with('rooms')->orderBy($sort, 'asc')->get();
+        }else{
+            $reserved = reserve::with('rooms')->orderBy('check_in', 'asc')->get();
+        }
 
 
 

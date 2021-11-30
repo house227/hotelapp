@@ -32,8 +32,13 @@
         </table> --}}
 
             <table>
-                <th>予約ID</th><th>氏名</th><th>人数</th><th>部屋番号</th>
-                <th>チェックイン</th><th>チェックアウト</th><th>料金</th>
+                <th> <a href="/hotel_reserved?sort=id">予約ID</a></th>
+                <th> 氏名 </th>
+                <th>人数</th>
+                <th>部屋番号</th>
+                <th> <a href="/hotel_reserved?sort=check_in">チェックイン</a> </th>
+                <th><a href="/hotel_reserved?sort=check_out">チェックアウト</a></th>
+                <th>料金</th>
                 @foreach ($reserved as $data)
                     <tr>
                         <td>{{$data->id}}</td>
