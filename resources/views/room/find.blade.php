@@ -28,20 +28,19 @@
                     @foreach ($room_name as $item)
 
 
-                    {{-- roomテーブルの外部キーとroomgroupテーブルの主キーが同じなら表示 --}}
-                    @if ($data->roomgroup_id === $item->id)
-                        <td>{{$item->room_name}}</td>
+                {{-- roomテーブルの外部キーとroomgroupテーブルの主キーが同じなら表示 --}}
+                        @if ($data->roomgroup_id === $item->id)
+                            <td>{{$item->room_name}}</td>
 
-                        {{-- if文で振り分けられた部屋名をvalueとして送る --}}
-                        <input type="hidden" value="{{$item->room_name}}" name="name">
-                        <td>{{$item->room_people}}名様まで</td>
-                        <input type="hidden" value="{{$item->room_people}}" name="people">
-                    @endif
+                            {{-- if文で振り分けられた部屋名をvalueとして送る --}}
+                            <input type="hidden" value="{{$item->room_name}}" name="name">
+                            <td>{{$item->room_people}}名様まで</td>
+                            <input type="hidden" value="{{$item->room_people}}" name="people">
+                        @endif
 
                     @endforeach
                     
                     
-                       
                         <input type="hidden" value="{{$data->room_num}}" name="num">
                         
                         <td>

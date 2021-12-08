@@ -50,7 +50,7 @@ class ReserveController extends Controller{
             $room_price = roomgroup::where('id', $room_data->roomgroup_id)->value('price');
 
             // reservationテーブル用
-            $reserve_form = [
+            $reserve_data = [
                 'hoteluser_id' => session('user_id'),
                 'person_num' => session('rest_num'),
                 'check_in' => session('check_in'),
@@ -61,7 +61,6 @@ class ReserveController extends Controller{
     
             // reservationsテーブル(予約)に登録データを新規追加
             $reserve = new reserve;
-            $reserve_data = $reserve_form;
             unset($reserve_data['_token']);
             $reserve->fill($reserve_data)->save();
 
